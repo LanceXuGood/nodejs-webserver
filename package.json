@@ -4,14 +4,22 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./node_modules/.bin/nodemon bin/run",
+    "koa": "./node_modules/.bin/runkoa bin/www"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "debug": "^3.1.0",
     "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-logger": "^3.2.0",
     "koa-router": "^7.3.0",
     "koa-static": "^4.0.2",
+    "runkoa": "^1.5.9",
     "superagent": "^3.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
   }
 }
