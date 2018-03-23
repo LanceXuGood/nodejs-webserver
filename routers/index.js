@@ -1,7 +1,7 @@
 const router = require('koa-router')();
 const request = require('superagent');
 
-router.get('/', async (ctx, next) => {
+router.get('/api', async (ctx, next) => {
     ctx.body = {
         data: "成功",
         status: 200
@@ -28,3 +28,4 @@ router.get('/', async (ctx, next) => {
 
 
 module.exports = router;
+
