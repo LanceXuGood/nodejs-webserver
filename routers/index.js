@@ -12,16 +12,9 @@ router.get('v2/*', async (ctx, next) => {
     // console.log(ctx);
     const method = ctx.request.method.toLowerCase();
     const originalUrl = ctx.request.originalUrl;
-    // // if (method === 'post' || method === 'put') {
-    // //     sreq.set('Content-Type', 'application/x-www-form-urlencoded')
-    // //         .send(ctx.request.body);
-    // //     const data = await request[method]('https://api.douban.com' + originalUrl);
-    // // }
-
-    // // 数据签名
-    // // https://api-m.mtime.cn/Showtime/HotCitiesByCinema.api
     // //如果为 post 或者 put 则需要发送时传递body
     const url = ('https://api.douban.com' + originalUrl)
+    console.log(url);
     if (method === 'post' || method === 'put') {
         const data = await request[method](url).set('Content-Type', 'application/json');
         ctx.body = data.body;
