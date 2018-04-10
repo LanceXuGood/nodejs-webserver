@@ -2,10 +2,11 @@ const Koa = require('koa');
 const router = require('koa-router')();
 const staticServer = require('koa-static'); //静态资源
 const cors = require('koa2-cors'); //跨域
+const bodyParser = require('koa-bodyparser')
 // const fs = require('fs')
 const index = require("./routers");
 
-var path = require('path');
+const path = require('path');
 
 const app = new Koa();
 
@@ -15,6 +16,9 @@ router.use('/', index.routes(), index.allowedMethods());
 
 
 app
+    .use(bodyParser({
+        enableTypes: ['json', 'form', 'text']
+    }))
     .use(cors({
         origin: '*',
         maxAge: 3600,
@@ -23,7 +27,6 @@ app
         allowHeaders: ["Access-Control-Allow-Headers", "x-requested-with, Content-Type"],
     }))
     .use(staticServer(path.join(__dirname, './public')))
-
     .use(async (ctx, next) => {
         const start = new Date();
         await next();
