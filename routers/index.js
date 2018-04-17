@@ -1,9 +1,9 @@
 const router = require('koa-router')();
 const request = require('superagent');
 const mysql = require('mysql');
-import {
+const {
     sqlData
-} from "../until"
+} = require('../until/index')
 // 测试api接口
 router.get('/', async (ctx, next) => {
     console.log(ctx);
@@ -14,14 +14,6 @@ router.get('/', async (ctx, next) => {
 });
 
 
-// film接口
-router.get('/', async (ctx, next) => {
-    console.log(ctx);
-    ctx.body = {
-        data: "成功",
-        status: 200
-    };
-});
 router.get('v2/*', async (ctx, next) => {
     console.log('v2/*', ctx);
     const method = ctx.request.method.toLowerCase();
