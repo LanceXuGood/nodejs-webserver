@@ -2,7 +2,7 @@ const router = require('koa-router')();
 const request = require('superagent');
 const mysql = require('mysql');
 import {
-    getUserList
+    sqlData
 } from "../until"
 // 测试api接口
 router.get('/', async (ctx, next) => {
@@ -40,32 +40,10 @@ router.get('v2/*', async (ctx, next) => {
 });
 // 测试获取用户
 router.get('buy/getUserList', async (ctx, next) => {
-    const connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '123456',
-        port: '3306',
-        database: 'buy',
-    });
-    connection.connect();
     const sql = 'SELECT * FROM user';
-    //数据查询
-    const getData = () => {
-        return new Promise((resolve, reject) => {
-            connection.query(sql, function (err, result) {
-                if (err) {
-                    console.log('[SELECT ERROR] - ', err.message);
-                    reject(err);
-                    return;
-                }
-                resolve(result);
-            });
-        })
-    }
-    const list = await getData();
-    connection.end();
+    const data = await sqlData(sql);
     ctx.body = {
-        data: list,
+        data: data,
         status: 200,
         errorMsg: ""
     }
@@ -78,33 +56,9 @@ router.post('buy/addBuyInfo', async (ctx, next) => {
             price,
             count
         } = ctx.request.body;
-        const connection = mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '123456',
-            port: '3306',
-            database: 'buy',
-        });
-        connection.connect();
 
         const sql = `INSERT INTO buyDetail(name,price,count,time) VALUES(${name},${price},${count},NOW())`;
-        console.log(sql);
-        //数据查询
-        const getData = () => {
-            return new Promise((resolve, reject) => {
-                connection.query(sql, function (err, result) {
-                    if (err) {
-                        console.log('INSERT INTO buyInfo ------ ', err.message);
-                        reject(err);
-                        return;
-                    }
-                    resolve(result);
-                });
-            })
-        }
-        const data = await getData();
-
-        connection.end();
+        const data = await sqlData(sql);
         ctx.body = {
             data: "OK",
             status: 200,
@@ -116,33 +70,11 @@ router.post('buy/addBuyInfo', async (ctx, next) => {
 });
 // 获取历史
 router.get('buy/getHistory', async (ctx, next) => {
-
-    const connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '123456',
-        port: '3306',
-        database: 'buy',
-    });
-    connection.connect();
-    const sql = "SELECT * FROM buydetail INNER JOIN USER ON buydetail.name = user.id ";
+    const sql = "SELECT * FROM buydetail INNER JOIN user ON buydetail.name = user.id ";
     //数据查询
-    const getData = () => {
-        return new Promise((resolve, reject) => {
-            connection.query(sql, function (err, result) {
-                if (err) {
-                    console.log('[SELECT ERROR] - ', err.message);
-                    reject(err);
-                    return;
-                }
-                resolve(result);
-            });
-        })
-    }
-    const list = await getData();
-    console.log(list);
+    const data = await sqlData(sql);
     ctx.body = {
-        data: list,
+        data: data,
         status: 200,
         errorMsg: ""
     }
