@@ -57,10 +57,11 @@ router.post('buy/addBuyInfo', async (ctx, next) => {
       errorMsg: ""
     }
   }
+
 });
 // 获取历史·
 router.get('buy/getHistory', async (ctx, next) => {
-  const sql = "SELECT * FROM buydetail INNER JOIN user ON buydetail.name = user.id ";
+  const sql = "SELECT * FROM buydetail INNER JOIN user ON buydetail.name = user.id ORDER BY time DESC";
   //数据查询
   const data = await sqlData(sql);
   ctx.body = {
@@ -68,6 +69,22 @@ router.get('buy/getHistory', async (ctx, next) => {
     status: 200,
     errorMsg: ""
   }
+});
+
+// 删除
+router.delete('buy/deleteHistory', async (ctx, next) => {
+  if (ctx.request.body.id) {
+    const { id } = ctx.request.body;
+    const sql = `DELETE FROM buydetail WHERE id = ${id}`;
+    //数据查询
+    const data = await sqlData(sql);
+    ctx.body = {
+      data: '成功',
+      status: 200,
+      errorMsg: ""
+    }
+  }
+
 });
 
 module.exports = router;
