@@ -15,7 +15,7 @@ module.exports = {
       password: 'jsure@123',
       port: '3306',
       database: 'test'
-    }, opt)
+    }, opt);
 
     const connection = mysql.createConnection(newOpt);
     connection.connect();
@@ -31,9 +31,9 @@ module.exports = {
           resolve(result);
         });
       })
-    }
+    };
     const data = await getData();
     connection.end();
     return data;
   }
-}
+};

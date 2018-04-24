@@ -6,7 +6,6 @@ const {
 } = require('../until/index');
 // 测试api接口
 router.get('/', async (ctx, next) => {
-  console.log(ctx);
   ctx.body = {
     data: "成功",
     status: 200
@@ -15,11 +14,10 @@ router.get('/', async (ctx, next) => {
 
 
 router.get('v2/*', async (ctx, next) => {
-  console.log('v2/*', ctx);
   const method = ctx.request.method.toLowerCase();
   const originalUrl = ctx.request.originalUrl;
   // //如果为 post 或者 put 则需要发送时传递body
-  const url = ('https://api.douban.com' + originalUrl)
+  const url = ('https://api.douban.com' + originalUrl);
   if (method === 'post' || method === 'put') {
     const data = await request[method](url).set('Content-Type', 'application/json');
     ctx.body = data.body;
@@ -61,11 +59,16 @@ router.post('buy/addBuyInfo', async (ctx, next) => {
 });
 // 获取历史·
 router.get('buy/getHistory', async (ctx, next) => {
-  const sql = "SELECT * FROM buydetail INNER JOIN user ON buydetail.name = user.id ORDER BY time DESC";
+  const sql = "SELECT bd.id,bd.price,us.name as us_name,bd.count,date_format(bd.time,'%Y-%m-%d') as time FROM buydetail as bd INNER JOIN user as us ON bd.name = us.id ORDER BY time DESC";
   //数据查询
   const data = await sqlData(sql);
+  const totalSQL = 'SELECT SUM(price) as totalPrice FROM buydetail';
+  const totalPrice = await sqlData(totalSQL);
   ctx.body = {
-    data: data,
+    data: {
+      list: data,
+      totalPrice: totalPrice[0].totalPrice
+    },
     status: 200,
     errorMsg: ""
   }
@@ -74,7 +77,9 @@ router.get('buy/getHistory', async (ctx, next) => {
 // 删除
 router.delete('buy/deleteHistory', async (ctx, next) => {
   if (ctx.request.body.id) {
-    const { id } = ctx.request.body;
+    const {
+      id
+    } = ctx.request.body;
     const sql = `DELETE FROM buydetail WHERE id = ${id}`;
     //数据查询
     const data = await sqlData(sql);
@@ -84,7 +89,6 @@ router.delete('buy/deleteHistory', async (ctx, next) => {
       errorMsg: ""
     }
   }
-
 });
 
 module.exports = router;
