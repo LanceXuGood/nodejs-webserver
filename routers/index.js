@@ -15,6 +15,7 @@ router.get('/', async (ctx, next) => {
 
 //
 router.get('wx', async (ctx, next) => {
+
   ctx.body = 'ok';
 });
 
