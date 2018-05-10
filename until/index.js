@@ -1,5 +1,5 @@
-import mysql from 'mysql';
-// const mysql = require('mysql');
+// import mysql from 'mysql';
+const mysql = require('mysql');
 
 module.exports = {
   sqlData: async function(sql, opt) {

@@ -1,4 +1,3 @@
-require("babel-core").transform("code");
 const Koa = require('koa');
 const router = require('koa-router')();
 const staticServer = require('koa-static'); //静态资源
