@@ -15,7 +15,10 @@ router.get('/', async (ctx, next) => {
 
 //
 router.get('wx', async (ctx, next) => {
-  ctx.body = 'ok'
+  ctx.body = {
+    data: "成功",
+    status: 200
+  };
 });
 
 
