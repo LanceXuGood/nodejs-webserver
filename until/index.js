@@ -10,6 +10,8 @@ module.exports = {
     //     port: '3306',
     //     database: 'buy',
     // }, opt)
+
+    // 测试服务器
     const newOpt = Object.assign({
       host: '47.98.140.45',
       user: 'test',

@@ -13,6 +13,14 @@ router.get('/', async (ctx, next) => {
 });
 
 
+//
+
+router.get('wx', async (ctx, next) => {
+  ctx.body = 'ok'
+});
+
+
+// 豆瓣接口
 router.get('v2/*', async (ctx, next) => {
   const method = ctx.request.method.toLowerCase();
   const originalUrl = ctx.request.originalUrl;
@@ -28,6 +36,9 @@ router.get('v2/*', async (ctx, next) => {
   }
 
 });
+
+
+
 // 测试获取用户
 router.get('buy/getUserList', async (ctx, next) => {
   const sql = 'SELECT * FROM user';
