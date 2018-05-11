@@ -1,3 +1,4 @@
+
 function getQueryString(name) {//根据字段看网址是否拼接&字符串
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
   var r = window.location.search.substr(1).match(reg);
@@ -11,7 +12,7 @@ var sec = getQueryString('sec');
 var timekey = getQueryString('timekey');
 
 if(from || appinstall || sec || timekey){//假如拼接上了
-  window.location.href = 'http://www.webcodelance.cn'
+  window.location.href = window.location.href.replace(/(\&*from\=[^\&\?\=]+)|(\&*appinstall\=[^\&\?\=]+)|(\&*sec\=[^\&\?\=]+)|(\&*timekey\=[^\&\?\=]+)/i,'').replace('/\?$/i','');
 }
 axios.post('wx/jsSdk', {
     url: location.href
