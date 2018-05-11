@@ -29,6 +29,7 @@ axios.post('http://www.webcodelance.cn/wx/jsSdk', {
         wx.onMenuShareAppMessage({
             title: '123', // 分享标题
             link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            desc: '这是个测试链接，用起来', // 分享描述
             imgUrl: 'http://www.webcodelance.cn/1.png', // 分享图标
             success: function () {
                 console.log('ok');
