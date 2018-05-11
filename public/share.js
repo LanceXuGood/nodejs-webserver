@@ -1,5 +1,5 @@
 function getUrl(){
-  return shareurl.replace(/\?*from\=[^\&\?\#]+/i,);
+  return location.href.replace(/\?*from\=[^\&\?\#]+/i,);
 }
 axios.post('http://www.webcodelance.cn/wx/jsSdk', {
     url: getUrl()
