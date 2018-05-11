@@ -1,5 +1,19 @@
 if(location.href.indexOf('from=')>-1){
-  location.href  = location.href.replace(/\?*from\=[^\&\?\#]+/i,'');
+  function getQueryString(name) {//根据字段看网址是否拼接&字符串
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null)
+      return unescape(r[2]);
+    return null;
+  }
+  var from = getQueryString('from');
+  var appinstall = getQueryString('appinstall');
+  var sec = getQueryString('sec');
+  var timekey = getQueryString('timekey');
+
+  if(from || appinstall || sec || timekey){//假如拼接上了
+    window.location.href = 'http://webcodelane.cn'
+  }
 }
 axios.post('http://www.webcodelance.cn/wx/jsSdk', {
     url: location.href
