@@ -15,28 +15,28 @@ axios.post('http://www.webcodelance.cn/wx/jsSdk', {
         });
     }
     wx.ready(function () {
-        // wx.onMenuShareTimeline({
-        //     title: '123', // 分享标题
-        //     link: 'http://wx.webcodelance.cn/123', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        //     imgUrl: 'http://img0.imgtn.bdimg.com/it/u=1999380000,1378130272&fm=214&gp=0.jpg', // 分享图标
-        //     success: function () {
-        //         console.log('ok');
-        //     },
-        //     cancel: function () {
-        //         console.log('cancel');
-        //     }
-        // });
-        // wx.onMenuShareAppMessage({
-        //     title: '123', // 分享标题
-        //     link: 'http://wx.webcodelance.cn/123', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        //     imgUrl: 'http://img0.imgtn.bdimg.com/it/u=1999380000,1378130272&fm=214&gp=0.jpg', // 分享图标
-        //     success: function () {
-        //         console.log('ok');
-        //     },
-        //     cancel: function () {
-        //         console.log('cancel');
-        //     }
-        // });
+        wx.onMenuShareTimeline({
+            title: '123', // 分享标题
+            link: 'http://wx.webcodelance.cn/123', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://img0.imgtn.bdimg.com/it/u=1999380000,1378130272&fm=214&gp=0.jpg', // 分享图标
+            success: function () {
+                console.log('ok');
+            },
+            cancel: function () {
+                console.log('cancel');
+            }
+        });
+        wx.onMenuShareAppMessage({
+            title: '123', // 分享标题
+            link: 'http://wx.webcodelance.cn/123', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://img0.imgtn.bdimg.com/it/u=1999380000,1378130272&fm=214&gp=0.jpg', // 分享图标
+            success: function () {
+                console.log('ok');
+            },
+            cancel: function () {
+                console.log('cancel');
+            }
+        });
 
     });
     wx.error(function (res) {
