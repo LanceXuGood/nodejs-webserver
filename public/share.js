@@ -11,12 +11,12 @@ axios.post('http://www.webcodelance.cn/wx/jsSdk', {
             timestamp: wxData.timestamp, // 必填，生成签名的时间戳
             nonceStr: wxData.nonceStr, // 必填，生成签名的随机串
             signature: wxData.signature, // 必填，签名，见附录1
-            jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+            jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ','onMenuShareQZone'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
         });
     }
     wx.ready(function () {
         wx.onMenuShareTimeline({
-            title: '123', // 分享标题
+            title: '分享到朋友圈', // 分享标题
             link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: 'http://www.webcodelance.cn/1.png', // 分享图标
             success: function () {
@@ -27,9 +27,33 @@ axios.post('http://www.webcodelance.cn/wx/jsSdk', {
             }
         });
         wx.onMenuShareAppMessage({
-            title: '123', // 分享标题
+            title: '分享给微信好友', // 分享标题
             link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            desc: '这是个测试链接，用起来', // 分享描述
+            desc: '分享给微信好友测试', // 分享描述
+            imgUrl: 'http://www.webcodelance.cn/1.png', // 分享图标
+            success: function () {
+                console.log('ok');
+            },
+            cancel: function () {
+                console.log('cancel');
+            }
+        });
+        wx.onMenuShareQQ({
+            title: '分享给QQ好友', // 分享标题
+            link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            desc: '分享给QQ好友测试', // 分享描述
+            imgUrl: 'http://www.webcodelance.cn/1.png', // 分享图标
+            success: function () {
+                console.log('ok');
+            },
+            cancel: function () {
+                console.log('cancel');
+            }
+        });
+        wx.onMenuShareQZone({
+            title: '分享到QQ空间', // 分享标题
+            link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            desc: '分享到QQ空间测试', // 分享描述
             imgUrl: 'http://www.webcodelance.cn/1.png', // 分享图标
             success: function () {
                 console.log('ok');
@@ -44,7 +68,7 @@ axios.post('http://www.webcodelance.cn/wx/jsSdk', {
         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
         console.log(res)
     })
-})
+});
 // axios.post('http://192.168.200.190:3000/vote/user', {
 //     userName: '1',
 //     contact: '1',
