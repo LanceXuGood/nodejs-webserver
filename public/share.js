@@ -12,7 +12,7 @@ if(location.href.indexOf('from=')>-1){
   var timekey = getQueryString('timekey');
 
   if(from || appinstall || sec || timekey){//假如拼接上了
-    window.location.href = 'http://www.webcodelane.cn'
+    window.location.href = 'http://www.webcodelance.cn'
   }
 }
 axios.post('http://www.webcodelance.cn/wx/jsSdk', {
