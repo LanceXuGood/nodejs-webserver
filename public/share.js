@@ -8,11 +8,12 @@ function getQueryString(name) {//根据字段看网址是否拼接&字符串
 }
 var from = getQueryString('from');
 var appinstall = getQueryString('appinstall');
+var isappinstall = getQueryString('isappinstall');
 var sec = getQueryString('sec');
 var timekey = getQueryString('timekey');
 
-if(from || appinstall || sec || timekey){//假如拼接上了
-  window.location.href = window.location.href.replace(/(\&*from\=[^\&\?\=]+)|(\&*appinstall\=[^\&\?\=]+)|(\&*sec\=[^\&\?\=]+)|(\&*timekey\=[^\&\?\=]+)/i,'').replace('/\?$/i','');
+if(from || appinstall || sec || timekey || isappinstall){//假如拼接上了
+  window.location.href = window.location.href.replace(/(\&*from\=[^\&\?\=]+)|(\&*appinstall\=[^\&\?\=]+)|(\&*isappinstall\=[^\&\?\=]+)|(\&*sec\=[^\&\?\=]+)|(\&*timekey\=[^\&\?\=]+)/i,'').replace('/\?$/i','');
 }
 axios.post('wx/jsSdk', {
     url: location.href
