@@ -2,7 +2,7 @@ if(location.href.indexOf('from=')>-1){
   location.href  = location.href.replace(/\?*from\=[^\&\?\#]+/i,'');
 }
 axios.post('http://www.webcodelance.cn/wx/jsSdk', {
-    url: getUrl()
+    url: location.href
 }).then(function (data) {
     var wxData = data.data.data;
 
