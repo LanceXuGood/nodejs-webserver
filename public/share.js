@@ -1,5 +1,5 @@
-function getUrl(){
-  return location.href.replace(/\?*from\=[^\&\?\#]+/i,'');
+if(location.href.indexOf('from=')>-1){
+  location.href  = location.href.replace(/\?*from\=[^\&\?\#]+/i,'');
 }
 axios.post('http://www.webcodelance.cn/wx/jsSdk', {
     url: getUrl()
@@ -20,7 +20,7 @@ axios.post('http://www.webcodelance.cn/wx/jsSdk', {
     wx.ready(function () {
         wx.onMenuShareTimeline({
             title: '分享到朋友圈', // 分享标题
-            link: getUrl(), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: 'http://www.webcodelance.cn/1.png', // 分享图标
             success: function () {
                 console.log('ok');
@@ -31,7 +31,7 @@ axios.post('http://www.webcodelance.cn/wx/jsSdk', {
         });
         wx.onMenuShareAppMessage({
             title: '分享给微信好友', // 分享标题
-            link: getUrl(), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             desc: '分享给微信好友测试', // 分享描述
             imgUrl: 'http://www.webcodelance.cn/1.png', // 分享图标
             success: function () {
@@ -43,7 +43,7 @@ axios.post('http://www.webcodelance.cn/wx/jsSdk', {
         });
         wx.onMenuShareQQ({
             title: '分享给QQ好友', // 分享标题
-            link: getUrl(), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             desc: '分享给QQ好友测试', // 分享描述
             imgUrl: 'http://www.webcodelance.cn/1.png', // 分享图标
             success: function () {
@@ -55,7 +55,7 @@ axios.post('http://www.webcodelance.cn/wx/jsSdk', {
         });
         wx.onMenuShareQZone({
             title: '分享到QQ空间', // 分享标题
-            link: getUrl(), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             desc: '分享到QQ空间测试', // 分享描述
             imgUrl: 'http://www.webcodelance.cn/1.png', // 分享图标
             success: function () {
