@@ -18,7 +18,7 @@ axios.post('http://www.webcodelance.cn/wx/jsSdk', {
         wx.onMenuShareTimeline({
             title: '123', // 分享标题
             link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://img0.imgtn.bdimg.com/it/u=1999380000,1378130272&fm=214&gp=0.jpg', // 分享图标
+            imgUrl: 'http://www.webcodelance.cn/1.png', // 分享图标
             success: function () {
                 console.log('ok');
             },
@@ -29,7 +29,7 @@ axios.post('http://www.webcodelance.cn/wx/jsSdk', {
         wx.onMenuShareAppMessage({
             title: '123', // 分享标题
             link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://img0.imgtn.bdimg.com/it/u=1999380000,1378130272&fm=214&gp=0.jpg', // 分享图标
+            imgUrl: 'http://www.webcodelance.cn/1.png', // 分享图标
             success: function () {
                 console.log('ok');
             },
