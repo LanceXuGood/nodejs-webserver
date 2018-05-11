@@ -1,7 +1,7 @@
 const router = require('koa-router')();
 const request = require('superagent');
 const { baseConfig } = require("../config");
-const mysql = require('mysql');
+const sha1 = require('sha1');
 const {
   sqlData
 } = require('../until/index');
